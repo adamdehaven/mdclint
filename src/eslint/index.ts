@@ -20,7 +20,7 @@ export default async function (opts?: PluginOptions) {
 
   const ruleChecker = createRuleChecker(options)
   return {
-    files: options?.files ?? ['**/*.md'],
+    files: opts?.files ?? ['**/*.md'],
     plugins: {
       mdclint: {
         configs: {
