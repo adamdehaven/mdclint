@@ -3,7 +3,7 @@ import { addErrorDetailIf } from "markdownlint/helpers";
 import { getParentOfType, filterByPredicate } from "../micromark-helpers";
 
 const unorderedListTypes = [ "blockQuotePrefix", "listItemPrefix", "listUnordered" ];
-const unorderedParentTypes = [ "blockQuote", "listOrdered", "listUnordered" ];
+const unorderedParentTypes = [ "blockQuote", "listOrdered", "listUnordered", "componentContainerSection" ];
 
 const MDC007: Rule = {
   "names": [ "MDC007", "mdc-ul-indent" ],
@@ -29,7 +29,7 @@ const MDC007: Rule = {
       if (type === "blockQuotePrefix") {
         lastBlockQuotePrefix = token;
       } else if (type === "listUnordered") {
-        let nesting = 0;
+        let nesting = 1;
         /** @type {import("markdownlint").MicromarkToken | null} */
         let current = token;
         while (

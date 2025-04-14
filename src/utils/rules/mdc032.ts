@@ -1,6 +1,7 @@
 import type { MicromarkToken, Rule } from "markdownlint";
 import { addErrorContext, isBlankLine } from "markdownlint/helpers";
 import { filterByPredicate, filterByTypes, getBlockQuotePrefixText, nonContentTokens } from "../micromark-helpers";
+import { isComponentStart } from "../mdc-helpers";
 
 const isList = (token: MicromarkToken) => (
   (token.type === "listOrdered") || (token.type === "listUnordered")
@@ -28,7 +29,7 @@ const MDC032: Rule = {
 
       // Look for a blank line above the list
       const firstLineNumber = list.startLine;
-      if (!isBlankLine(lines[firstLineNumber - 2])) {
+      if (!isBlankLine(lines[firstLineNumber - 2]) && !isComponentStart(lines[firstLineNumber - 2])) {
         addErrorContext(
           onError,
           firstLineNumber,
