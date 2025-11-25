@@ -288,4 +288,44 @@ export const rules: Record<string, RuleDefinition> = {
     url: "https://github.com/DavidAnson/markdownlint/blob/main/doc/Rules.md#md058",
     fixable: "code",
   },
+  MD059: {
+    name: "md059",
+    description: "Link text should be descriptive",
+    url: "https://github.com/DavidAnson/markdownlint/blob/main/doc/Rules.md#md059",
+  },
+  MD060: {
+    name: "md060",
+    description: "Table column style",
+    url: "https://github.com/DavidAnson/markdownlint/blob/main/doc/Rules.md#md060",
+  },
+  MDC007: {
+    name: "mdc007",
+    description: "Unordered list indentation",
+    url: "https://github.com/DavidAnson/markdownlint/blob/main/doc/Rules.md#md007",
+    fixable: "whitespace",
+  },
+  MDC018: {
+    name: "mdc018",
+    description: "No space after hash",
+    url: "https://github.com/DavidAnson/markdownlint/blob/main/doc/Rules.md#md018",
+    fixable: "whitespace",
+  },
+  MDC022: {
+    name: "mdc022",
+    description: "Headings should be surrounded by blank lines",
+    url: "https://github.com/DavidAnson/markdownlint/blob/main/doc/Rules.md#md022",
+    fixable: "whitespace",
+  },
+  MDC032: {
+    name: "mdc032",
+    description: "Lists should be surrounded by blank lines",
+    url: "https://github.com/DavidAnson/markdownlint/blob/main/doc/Rules.md#md032",
+    fixable: "whitespace",
+  },
+  MDC034: {
+    name: "mdc034",
+    description: "Spaces inside code span elements",
+    url: "https://github.com/DavidAnson/markdownlint/blob/main/doc/Rules.md#md034",
+    fixable: "code",
+  },
 }

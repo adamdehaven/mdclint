@@ -15,6 +15,7 @@ const MDC034: Rule = {
       filterByPredicate(
         tokens,
         (token: MicromarkToken) => {
+          // @ts-ignore
           if ((token.type === "literalAutolink") && !inHtmlFlow(token)) {
             // Detect and ignore https://github.com/micromark/micromark/issues/164
             const siblings = token.parent?.children;

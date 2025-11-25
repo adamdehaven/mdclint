@@ -39,7 +39,10 @@ const getRange = (src: SourceCode, err: LintError) => {
   if (err.fixInfo && (err.fixInfo!.deleteCount || 0) < 0) {
     start = src.getIndexFromLoc({ line: err.lineNumber, column: 0 });
     end = src.getIndexFromLoc({
-      line: err.lineNumber - (err.fixInfo!.deleteCount || 0),
+      line: Math.min(
+        src.lines.length,
+        err.lineNumber - (err.fixInfo!.deleteCount || 0)
+      ), // line should not exceed number of lines in the source code
       column: 0,
     });
 
@@ -75,7 +78,7 @@ const md012Preprocessor = (errors: LintError[]) => {
   return others.concat(joinedErrors);
 };
 
-const handleErrors = (errors: LintError[], src: SourceCode) => {
+const handleErrors = (errors: LintError[], src: SourceCode, fixable?: RuleDefinition["fixable"]) => {
   if (errors.length && errors[0].ruleNames[0] === "MD012") {
     errors = md012Preprocessor(errors);
   }
@@ -87,7 +90,7 @@ const handleErrors = (errors: LintError[], src: SourceCode) => {
       fix: undefined as any,
     };
 
-    if (err.fixInfo) {
+    if (fixable && err.fixInfo) {
       error.fix = function (fixer: any) {
         const range = getRange(src, err);
         if (range[0] === range[1]) {
@@ -141,7 +144,7 @@ export function createRuleChecker(options: Options) {
           Program() {
             const src = context.sourceCode;
             const errors = check(rule.name, src);            
-            const handledErrors = handleErrors(errors, src);
+            const handledErrors = handleErrors(errors, src, rule.fixable);
             reportErrors(context, handledErrors);
           },
         };

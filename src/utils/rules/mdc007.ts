@@ -29,7 +29,12 @@ const MDC007: Rule = {
       if (type === "blockQuotePrefix") {
         lastBlockQuotePrefix = token;
       } else if (type === "listUnordered") {
-        let nesting = 1;
+        const componentParent = getParentOfType(token, [ "componentContainer" ]);
+        const componentSectionParent =
+          componentParent ? null : getParentOfType(token, [ "componentContainerSection" ]);
+        const parentIndent =
+          (((componentParent ?? componentSectionParent)?.startColumn || 1) - 1) / 2;
+        let nesting = parentIndent || 0;
         /** @type {import("markdownlint").MicromarkToken | null} */
         let current = token;
         while (

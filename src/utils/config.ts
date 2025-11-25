@@ -6,6 +6,7 @@ import MDC032 from './rules/mdc032'
 import MDC007 from './rules/mdc007'
 import MDC034 from './rules/mdc034'
 import MDC031 from './rules/mdc031'
+import MDC022 from './rules/mdc022'
 
 interface MarkdownlintOptions {
   preset?: 'markdown' | 'mdc'
@@ -22,6 +23,7 @@ export async function getConfig(root: string, overrides?: Configuration): Promis
     defaultConfig: {
       // Overridden rules
       "MD018": false, // No extra spaces after blockquote
+      "MD022": false, // Headings should be surrounded by blank lines
       "MD032": false, // Lists should be surrounded by blank lines
       "MD007": false, // Unordered list indentation
       "MD034": false, // No bare URL used
@@ -32,6 +34,10 @@ export async function getConfig(root: string, overrides?: Configuration): Promis
       },
       // Disabled rules
       "MD041": false, // First line in file should be a top level header
+      "MD013": {
+        // Disable tables length check by default
+        tables: false,
+      }
     }
   })
 
@@ -49,9 +55,10 @@ export async function getMarkdownlintOptions(root: string, opts: MarkdownlintOpt
     config,
   }
 
-  if (opts.preset === 'mdc') {
+  if (opts.preset !== 'markdown') {
     options.customRules = [
       MDC018,
+      MDC022,
       MDC032,
       MDC007,
       MDC034,
