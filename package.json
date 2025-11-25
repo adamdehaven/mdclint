@@ -8,6 +8,10 @@
   "bin": {
     "mdclint": "./bin/mdclint.mjs"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nuxt-content/mdclint.git"
+  },
   "exports": {
     ".": {
       "types": "./types.d.ts",
