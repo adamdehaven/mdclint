@@ -316,11 +316,15 @@ export const rules: Record<string, RuleDefinition> = {
     url: "https://github.com/DavidAnson/markdownlint/blob/main/doc/Rules.md#md022",
     fixable: "whitespace",
   },
+  MDC031: {
+    name: "mdc031",
+    description: "Fenced code blocks should be surrounded by blank lines",
+    url: "https://github.com/DavidAnson/markdownlint/blob/main/doc/Rules.md#md031",
+  },
   MDC032: {
     name: "mdc032",
     description: "Lists should be surrounded by blank lines",
     url: "https://github.com/DavidAnson/markdownlint/blob/main/doc/Rules.md#md032",
-    fixable: "whitespace",
   },
   MDC034: {
     name: "mdc034",

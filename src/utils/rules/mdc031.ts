@@ -1,10 +1,8 @@
 import type { Rule, RuleOnError } from "markdownlint";
 import { addErrorContext, isBlankLine } from "markdownlint/helpers";
 import { filterByTypes, getParentOfType } from "../micromark-helpers";
+import { isBlockComponentSlot, isComponentEndFence, isFirstLineOfComponent } from "../mdc-helpers";
 
-const isBlockComponentStart = (line: string) => line.match(/^\s*:{2,}\w+/)
-const isBlockComponentEnd = (line: string) => line.match(/^\s*:{2,}\s*$/)
-const isBlockComponentSlot = (line: string) => line.match(/^\s*#\w+/)
 
 const codeFencePrefixRe = /^(.*?)[`~]/;
 
@@ -51,11 +49,11 @@ const MDC031: Rule = {
     const { lines } = params;
     for (const codeBlock of filterByTypes(params.parsers.micromark.tokens, [ "codeFenced" ])) {
       if (includeListItems || !(getParentOfType(codeBlock, [ "listOrdered", "listUnordered" ]))) {
-        if (!isBlankLine(lines[codeBlock.startLine - 2]) && !isBlockComponentStart(lines[codeBlock.startLine - 2]) && !isBlockComponentSlot(lines[codeBlock.startLine - 2])) {
+        if (!isBlankLine(lines[codeBlock.startLine - 2]) && !isFirstLineOfComponent(codeBlock.startLine - 1, lines) && !isBlockComponentSlot(lines[codeBlock.startLine - 2])) {
           addError(onError, lines, codeBlock.startLine, true);
         }
         if (!isBlankLine(lines[codeBlock.endLine]) && !isBlankLine(lines[codeBlock.endLine - 1])) {
-          if (!isBlockComponentEnd(lines[codeBlock.endLine]) && !isBlockComponentStart(lines[codeBlock.endLine - 1])) {
+          if (!isComponentEndFence(lines[codeBlock.endLine]) && !isFirstLineOfComponent(codeBlock.endLine, lines)) {
             addError(onError, lines, codeBlock.endLine, false);
           }
         }

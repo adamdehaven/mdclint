@@ -25,6 +25,10 @@ export function isComponentEndFence(line: string) {
   return line.match(/^\s*:{2,}\s*$/)
 }
 
+export function isBlockComponentSlot(line: string) {
+  return line.match(/^\s*#\w+/)
+}
+
 export function isComponentStartFence(line: string) {
   return line.match(/^\s*:{2,}\w+/)
 }
