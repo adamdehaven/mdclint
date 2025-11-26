@@ -316,6 +316,12 @@ export const rules: Record<string, RuleDefinition> = {
     url: "https://github.com/DavidAnson/markdownlint/blob/main/doc/Rules.md#md022",
     fixable: "whitespace",
   },
+  MDC023: {
+    name: "mdc023",
+    description: "Headings should be surrounded by blank lines",
+    url: "https://github.com/DavidAnson/markdownlint/blob/main/doc/Rules.md#md023",
+    fixable: "whitespace",
+  },
   MDC031: {
     name: "mdc031",
     description: "Fenced code blocks should be surrounded by blank lines",
@@ -330,6 +336,12 @@ export const rules: Record<string, RuleDefinition> = {
     name: "mdc034",
     description: "Spaces inside code span elements",
     url: "https://github.com/DavidAnson/markdownlint/blob/main/doc/Rules.md#md034",
+    fixable: "code",
+  },
+  MDC058: {
+    name: "mdc058",
+    description: "Tables should be surrounded by blank lines",
+    url: "https://github.com/DavidAnson/markdownlint/blob/main/doc/Rules.md#md058",
     fixable: "code",
   },
 }
