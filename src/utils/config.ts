@@ -42,6 +42,9 @@ export async function getConfig(root: string, overrides?: Configuration): Promis
         tables: false,
       },
       "MD058": false, // Blank line before a table
+      "MDC031": {
+        list_items: false,
+      }
     }
   })
 

@@ -49,7 +49,7 @@ const MDC031: Rule = {
     const { lines } = params;
     for (const codeBlock of filterByTypes(params.parsers.micromark.tokens, [ "codeFenced" ])) {
       if (includeListItems || !(getParentOfType(codeBlock, [ "listOrdered", "listUnordered" ]))) {
-        if (!isBlankLine(lines[codeBlock.startLine - 2]) && !isFirstLineOfComponent(codeBlock.startLine - 1, lines) && !isBlockComponentSlot(lines[codeBlock.startLine - 2])) {
+      if (!isBlankLine(lines[codeBlock.startLine - 2]) && !isFirstLineOfComponent(codeBlock.startLine - 1, lines) && !isBlockComponentSlot(lines[codeBlock.startLine - 2])) {
           addError(onError, lines, codeBlock.startLine, true);
         }
         if (!isBlankLine(lines[codeBlock.endLine]) && !isBlankLine(lines[codeBlock.endLine - 1])) {
