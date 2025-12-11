@@ -4,9 +4,7 @@ import { getMarkdownlintOptions } from '../utils/config';
 import { createRuleChecker } from './ruleChecker.js'
 import type { Linter } from 'eslint';
 import type { PluginOptions } from '../../types'
-
-const require = createRequire(import.meta.url)
-const { version } = require('../package.json')
+import { version } from '../../package.json'
 
 const parserMeta = {
   name: 'mdclint/markdown-parser',

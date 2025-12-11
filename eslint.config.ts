@@ -1,10 +1,8 @@
 // @ts-check
 import { createConfigForNuxt } from '@nuxt/eslint-config/flat'
-import { mdcLint } from 'mdclint'
+import { mdcLint } from './src/index.ts'
 
 export default createConfigForNuxt({})
   .append(mdcLint({
-    config: {
-      md060: false
-    }
+    files: ['content/**/*.md']
   }))

@@ -41,6 +41,7 @@ color: red
       url: https://images.example.com/dog.png
     color: red
     ---
+
     - This is a list item.
     - This is a list item.
       - This is a CHILD list item.

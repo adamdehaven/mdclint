@@ -43,13 +43,6 @@
   ],
   "author": "",
   "license": "MIT",
-  "dependencies": {
-    "@eslint/markdown": "^7.5.1",
-    "c12": "^3.3.2",
-    "citty": "^0.1.6",
-    "glob": "^13.0.0",
-    "remark-mdc": "^3.9.0"
-  },
   "pnpm": {
     "patchedDependencies": {
       "markdownlint": "patches/markdownlint.patch"
@@ -66,7 +59,11 @@
     "markdownlint": "^0.40.0",
     "mdclint": "workspace:*",
     "release-it": "^19.1.0",
-    "unbuild": "^3.6.1"
+    "remark-mdc": "^3.9.0",
+    "unbuild": "^3.6.1",
+    "c12": "^3.3.2",
+    "citty": "^0.1.6",
+    "glob": "^13.0.0"
   },
   "packageManager": "pnpm@10.25.0"
 }

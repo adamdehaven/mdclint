@@ -21,11 +21,11 @@ background-image:
 
   :::container
 
-- This is a list item.
-- This is a list item.
-  - This is a CHILD list item.
-    - This is a GRANDCHILD list item.
-- This is a list item.
+  - This is a list item.
+  - This is a list item.
+    - This is a CHILD list item.
+      - This is a GRANDCHILD list item.
+  - This is a list item.
 
   :::
 

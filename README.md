@@ -4,14 +4,6 @@ MD Lint is a tool for linting Markdown and MDC files based on [markdownlint](htt
 
 The package offers a CLI and a eslint plugin.
 
-## CLI
-
-You can use the CLI to link your markdown files using `npx mdclint`.
-
-```bash
-npx mdclint content/**/*.md
-```
-
 ## ESLint Plugin
 
 - Install the plugin in your project
@@ -35,6 +27,23 @@ export default createConfigForNuxt({})
 ```bash
 eslint .
 ```
+
+## CLI
+
+You can use the CLI to link your markdown files using `npx mdclint`.
+
+```bash
+npx mdclint content/**/*.md
+```
+
+## 💻 Development
+
+- Clone repository
+- Install dependencies using `pnpm install`
+- Prepare using `pnpm dev:prepare`
+- Build using `pnpm prepack`
+- Try playground using `pnpm dev`
+- Test using `pnpm test`
 
 ## Related Projects
 
