@@ -1,15 +1,27 @@
+import { createRequire } from 'node:module'
 import { rules } from './rules.js'
 import { getMarkdownlintOptions } from '../utils/config';
 import { createRuleChecker } from './ruleChecker.js'
 import type { Linter } from 'eslint';
 import type { PluginOptions } from '../../types'
 
+const require = createRequire(import.meta.url)
+const { version } = require('../package.json')
+
+const parserMeta = {
+  name: 'mdclint/markdown-parser',
+  version,
+}
+
+const parser = { meta: parserMeta, parseForESLint }
+
 
 export default async function (opts?: PluginOptions) {
+  const { files, preset, ...markdownlintOptions } = opts ?? {}
   const ruleNames = Object.keys(rules)
   const options = await getMarkdownlintOptions(process.cwd(), {
-    preset: opts?.preset,
-    overrides: opts?.markdownlint?.config,
+    preset,
+    overrides: markdownlintOptions.config
   })
   const config = options.config!
 
@@ -20,7 +32,7 @@ export default async function (opts?: PluginOptions) {
 
   const ruleChecker = createRuleChecker(options)
   return {
-    files: opts?.files ?? ['**/*.md'],
+    files: files ?? ['**/*.md'],
     plugins: {
       mdclint: {
         configs: {
@@ -38,9 +50,7 @@ export default async function (opts?: PluginOptions) {
       },
     },
     languageOptions: {
-      parser: {
-        parseForESLint
-      },
+      parser,
     },
     rules: recommendedRules,
   } as Linter.Config<Linter.RulesRecord>
