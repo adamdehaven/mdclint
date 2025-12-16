@@ -37,10 +37,7 @@ export async function getConfig(root: string, overrides?: Configuration): Promis
       },
       // Disabled rules
       "MD041": false, // First line in file should be a top level header
-      "MD013": {
-        // Disable tables length check by default
-        tables: false,
-      },
+      "MD013": false, // Line length
       "MD058": false, // Blank line before a table
       "MDC031": {
         list_items: false,
